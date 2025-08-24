@@ -37,9 +37,7 @@
                radial-gradient(900px 180px at 90% -30%, rgba(96,165,250,.15), transparent 70%);
     border-bottom:1px solid rgba(148,163,184,.25);
   }
-  .title{
-    font-size:22px; font-weight:800; letter-spacing:.2px;
-  }
+  .title{font-size:22px; font-weight:800; letter-spacing:.2px;}
   .chips{display:flex; gap:8px; flex-wrap:wrap}
   .chip{
     border:1px solid rgba(148,163,184,.3);
@@ -54,13 +52,8 @@
   }
   .badge.ilc{background: linear-gradient(135deg,#fde68a,#f59e0b); color:#1f2937}
   .badge.idc{background: linear-gradient(135deg,#93c5fd,#3b82f6); color:#0b1020}
-  table{
-    width:100%; border-collapse:separate; border-spacing:0;
-  }
-  th, td{
-    padding:14px 16px; vertical-align:top;
-    border-bottom:1px solid rgba(148,163,184,.18);
-  }
+  table{width:100%; border-collapse:separate; border-spacing:0;}
+  th, td{padding:14px 16px; vertical-align:top; border-bottom:1px solid rgba(148,163,184,.18);}
   thead th{
     position:sticky; top:0; z-index:1;
     background:linear-gradient(180deg, rgba(17,24,39,.9), rgba(17,24,39,.85));
@@ -78,13 +71,6 @@
   .pill.good{background: rgba(16,185,129,.12); border-color: rgba(16,185,129,.35)}
   .pill.warn{background: rgba(244,63,94,.12); border-color: rgba(244,63,94,.35)}
   .mini{display:inline-block; font-size:12px; color:var(--muted); margin-top:4px}
-  .key{display:inline-flex; gap:8px; flex-wrap:wrap; margin-left:4px}
-  .k{display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--muted)}
-  .dot{width:10px;height:10px;border-radius:50%}
-  .dot.ilc{background:var(--ilc)}
-  .dot.idc{background:var(--idc)}
-  .emoji{font-size:18px}
-  .buzz{font-weight:700}
   .ref{padding:14px 22px; color:var(--muted); font-size:12px}
 </style>
 </head>
@@ -106,6 +92,9 @@
       </div>
     </header>
 
+    <!-- ✅ Back-link goes here -->
+    <p style="padding:12px"><a href="index.html">⬅︎ Back to Surgery Home</a></p>
+
     <table role="table" aria-label="ILC vs IDC Comparison">
       <thead>
         <tr>
@@ -116,77 +105,95 @@
         </tr>
       </thead>
       <tbody>
+        <!-- Clinical Presentation moved up -->
+        <tr>
+          <td>🩺 Example Clinical Presentation</td>
+          <td>👵 Postmeno, strongly <b>ER+</b>, subtle/asymmetric thickening; later GI/peritoneal spread 🫄</td>
+          <td>🤏 Palpable spiculated mass; later 🦴 bone pain</td>
+          <td>🔎 ILC: consider <b>MRI</b> for extent, endocrine-first strategy</td>
+        </tr>
+
         <tr>
           <td>📊 Prevalence</td>
           <td>~10% of breast cancers</td>
           <td>Most common subtype</td>
-          <td>Often underrepresented in trials → avoid one-size-fits-all.</td>
+          <td>📝 ILC underrepresented in trials → avoid one-size-fits-all</td>
         </tr>
+
         <tr>
           <td>🔬 Morphology</td>
-          <td><b>Single-file</b> non-cohesive cells; hallmark = <b>E-cadherin loss</b></td>
-          <td>Cohesive nests/glands; variable</td>
-          <td>E-cadherin loss = diagnostic marker; diffuse growth pattern.</td>
+          <td>“<b>Single-file</b>” cells; hallmark = <b>E-cadherin loss</b> 🚫</td>
+          <td>Cohesive nests/glands 🧱</td>
+          <td>Diagnostic marker; diffuse margins</td>
         </tr>
+
         <tr>
           <td>🧬 Genomics</td>
-          <td>↑ CDH1, PTEN loss/AKT, TBX3, FOXA1; ↓ GATA3</td>
+          <td>↑ CDH1, PTEN loss/AKT ↑, TBX3, FOXA1; ↓ GATA3</td>
           <td>More GATA3; rare CDH1 loss</td>
-          <td>Different ER cofactors → therapy response differs.</td>
+          <td>Different ER cofactors → therapy response differs</td>
         </tr>
+
         <tr>
           <td>🌸 Hormone/Proliferation</td>
-          <td>Mostly ER+, HER2–; low Ki-67; luminal A–like</td>
-          <td>Heterogeneous (luminal A/B, HER2+, TNBC)</td>
-          <td><span class="pill good">Endocrine-leaning</span> strategy in ILC.</td>
+          <td>Mostly ER+, HER2–; low Ki-67 🌿</td>
+          <td>Heterogeneous (A/B, HER2+, TNBC)</td>
+          <td><span class="pill good">Endocrine-leaning</span> strategy</td>
         </tr>
+
         <tr>
           <td>🧭 Spread</td>
-          <td>GI, peritoneum, ovaries</td>
+          <td>GI, peritoneum, ovaries ↑</td>
           <td>Bone, lung, liver</td>
-          <td>Surveillance tailored to pattern.</td>
+          <td>Tailor staging/surveillance</td>
         </tr>
+
         <tr>
           <td>💉 Chemo Response</td>
-          <td>Lower pCR (3–5%); less downstaging</td>
-          <td>Higher pCR (~14%); better BCS</td>
-          <td>Chemo selectively in ILC; biomarker guided.</td>
+          <td>Lower pCR (3–5%) ⚠️</td>
+          <td>Higher pCR (~14%) ✅</td>
+          <td>Use chemo selectively in ILC</td>
         </tr>
+
         <tr>
           <td>🧪 Oncotype DX</td>
           <td>Rare high RS (~1.5%); many intermediate</td>
           <td>Up to 20% high RS</td>
-          <td>Intermediate RS less informative in ILC.</td>
+          <td>Intermediate RS less informative</td>
         </tr>
+
         <tr>
           <td>🧿 HER2 & Trastuzumab</td>
           <td>3–10%; trastuzumab effective</td>
           <td>15–20%; trastuzumab standard</td>
-          <td>Test all ILC for HER2; benefit ≈ IDC.</td>
+          <td>Test all ILC for HER2</td>
         </tr>
+
         <tr>
           <td>🌡️ Endocrine Therapy</td>
           <td><b>AI (letrozole)</b> > tamoxifen</td>
-          <td>AI better mainly in luminal B</td>
-          <td><span class="pill good">Prefer AI</span> in postmeno ILC.</td>
+          <td>AI advantage in luminal B</td>
+          <td><span class="pill good">Prefer AI</span> in postmeno ILC</td>
         </tr>
+
+        <tr>
+          <td>📉 Prognosis</td>
+          <td>Slow growing but risk late recurrence ⏳</td>
+          <td>Chemo-sensitive, early pCR possible 💥</td>
+          <td>ILC: watch margins & atypical mets</td>
+        </tr>
+
         <tr>
           <td>🧠 Buzzwords</td>
-          <td>“Single-file”, “E-cadherin−”, “GI/peritoneal mets”, “AI>TAM”</td>
-          <td>“Cohesive glands”, “GATA3”, “Chemo-responsive”</td>
-          <td>Use for memory anchors.</td>
-        </tr>
-        <tr>
-          <td>🩺 Example Presentation</td>
-          <td>Postmeno, ER+ subtle thickening; underestimated on imaging; later peritoneal spread</td>
-          <td>Palpable spiculated mass; bone pain if metastatic</td>
-          <td>ILC: consider MRI for extent; endocrine-first.</td>
+          <td>“Single-file” • “E-cadherin−” • “GI/peritoneal mets” • “AI>TAM”</td>
+          <td>“Cohesive glands” • “GATA3” • “Chemo-responsive”</td>
+          <td>Use to trigger recall 🚀</td>
         </tr>
       </tbody>
     </table>
 
     <div class="ref">
-      Source: Barroso-Sousa R, Metzger-Filho O. <i>Differences between invasive lobular and invasive ductal carcinoma of the breast: results and therapeutic implications.</i> PMCID: PMC4952020, PMID: 27482285.
+      📚 Source: Barroso-Sousa R, Metzger-Filho O. <i>Differences between invasive lobular and invasive ductal carcinoma of the breast: results and therapeutic implications.</i> PMCID: PMC4952020, PMID: 27482285.
     </div>
   </div>
 </body>
