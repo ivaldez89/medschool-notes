@@ -4,49 +4,30 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>ILC vs IDC — Clinical, Molecular & Therapeutic Differences</title>
-<link rel="stylesheet" href="../style.css">
 
+<!-- ✅ Global site-wide styles with light/dark mode -->
+<link rel="stylesheet" href="../style.css" />
+
+<!-- Page-specific styles (no body{} here) -->
 <style>
-  :root{
-    --bg:#0f172a;
-    --card:#111827;
-    --ink:#e5e7eb;
-    --muted:#94a3b8;
-    --ilc:#f59e0b;
-    --idc:#60a5fa;
-    --good:#10b981;
-    --warn:#f43f5e;
-    --row:#0b1223;
-  }
-  *{box-sizing:border-box}
-
-  .wrap{max-width:1100px; margin:0 auto; border-radius:20px; overflow:hidden;}
   header{
     padding:22px; display:flex; align-items:center; justify-content:space-between; gap:12px;
     background: radial-gradient(1200px 200px at 20% -40%, rgba(245,158,11,.15), transparent 70%),
                radial-gradient(900px 180px at 90% -30%, rgba(96,165,250,.15), transparent 70%);
-    border-bottom:1px solid rgba(148,163,184,.25);
+    border-bottom:1px solid var(--border);
   }
-  .title{font-size:22px; font-weight:800; letter-spacing:.2px;}
+  .title{font-size:22px; font-weight:800; letter-spacing:.2px}
   .chips{display:flex; gap:8px; flex-wrap:wrap}
-  .chip{border:1px solid rgba(148,163,184,.3); padding:6px 10px; border-radius:999px; font-size:12px; color:var(--muted);}
+  .chip{border:1px solid var(--border); padding:6px 10px; border-radius:999px; font-size:12px; color:var(--muted)}
   .legend{display:flex; gap:8px; align-items:center}
-  .badge{display:inline-flex; align-items:center; gap:6px; font-weight:700; padding:6px 10px; border-radius:10px; font-size:12px;}
-  .badge.ilc{background: linear-gradient(135deg,#fde68a,#f59e0b); color:#1f2937}
-  .badge.idc{background: linear-gradient(135deg,#93c5fd,#3b82f6); color:#0b1020}
-  table{width:100%; border-collapse:separate; border-spacing:0;}
-  th, td{padding:14px 16px; vertical-align:top; border-bottom:1px solid rgba(148,163,184,.18);}
-  thead th{position:sticky; top:0; background:rgba(17,24,39,.9); text-align:left; font-size:14px;}
-  tbody tr:nth-child(odd){ background: var(--row);}
-  .col-label{width:28%}
-  .col-ilc, .col-idc{width:36%}
-  .pill{display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:2px 8px; font-size:12px; font-weight:700;}
+  .badge{display:inline-flex; align-items:center; gap:6px; font-weight:700; padding:6px 10px; border-radius:10px; font-size:12px; color:#0b1020; background:white}
+  .badge.ilc{background:linear-gradient(135deg,#fde68a,#f59e0b)}
+  .badge.idc{background:linear-gradient(135deg,#93c5fd,#3b82f6)}
+  .col-label{width:28%} .col-ilc,.col-idc{width:36%}
+  .pill{display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:2px 8px; font-size:12px; font-weight:700}
   .pill.good{background: rgba(16,185,129,.12); border:1px solid rgba(16,185,129,.35)}
   .pill.warn{background: rgba(244,63,94,.12); border:1px solid rgba(244,63,94,.35)}
   .ref{padding:14px 22px; color:var(--muted); font-size:12px}
-  .back a{display:inline-block; margin:12px; padding:8px 12px; border-radius:8px;
-    border:1px solid rgba(148,163,184,.35); background:#111827; color:#93c5fd; text-decoration:none;}
-  .back a:hover{background:#0b1223; text-decoration:underline}
 </style>
 </head>
 <body>
@@ -67,7 +48,7 @@
       </div>
     </header>
 
-    <!-- Back-link -->
+    <!-- Back to folder home -->
     <p class="back"><a href="index.html">⬅︎ Back to Surgery Home</a></p>
 
     <table role="table" aria-label="ILC vs IDC Comparison">
@@ -80,12 +61,12 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Clinical Presentation row at top -->
+        <!-- Clinical Presentation first -->
         <tr>
           <td>🩺 Example Clinical Presentation</td>
-          <td>👵 Postmeno, ER+ mass; subtle/asymmetric thickening (often underestimated on 🩻 mammogram); later GI/peritoneal spread 🫄</td>
+          <td>👵 Postmeno, ER+ mass; subtle/asymmetric thickening (often underestimated on 🩻); later GI/peritoneal spread 🫄</td>
           <td>🤏 Palpable spiculated lump; clear imaging correlate; later 🦴 bone pain</td>
-          <td>🧭 ILC: order <b>MRI</b> for accurate extent, endocrine-first in many cases</td>
+          <td>🧭 ILC: order <b>MRI</b> for extent; endocrine-first in many cases</td>
         </tr>
 
         <tr>
@@ -99,19 +80,19 @@
           <td>🔬 Morphology</td>
           <td>“<b>Single-file</b>” 🧵 cells; hallmark = <b>E-cadherin loss</b> 🚫</td>
           <td>Cohesive nests/glands 🧱</td>
-          <td>Loss of cohesion = diffuse margins, hard to excise completely</td>
+          <td>Loss of cohesion → diffuse margins; plan wider resections</td>
         </tr>
 
         <tr>
           <td>🧬 Genomics</td>
-          <td>↑ CDH1, PTEN loss/AKT ↑, TBX3, FOXA1; ↓ GATA3 🧬</td>
-          <td>More GATA3; rare CDH1</td>
-          <td>Explains differential endocrine sensitivity/resistance</td>
+          <td>↑ <b>CDH1</b>, PTEN loss/AKT↑, <b>TBX3</b>, <b>FOXA1</b>; ↓ <b>GATA3</b> 🧬</td>
+          <td>More <b>GATA3</b>; rare CDH1 loss</td>
+          <td>Distinct ER co-factor wiring → different endocrine sensitivity</td>
         </tr>
 
         <tr>
           <td>🌸 Hormone/Proliferation</td>
-          <td>Mostly ER+, HER2–; low Ki-67 🌿; Luminal A–like</td>
+          <td>Mostly <b>ER+</b>, HER2–; low Ki-67 🌿; Luminal-A–like</td>
           <td>Mixed: Luminal A/B, HER2+, TNBC</td>
           <td><span class="pill good">Endocrine-driven</span> in ILC</td>
         </tr>
@@ -120,49 +101,49 @@
           <td>🧭 Spread</td>
           <td>GI 🍽️, peritoneum 🫄, ovaries 🥚</td>
           <td>Bone 🦴, lung 🌬️, liver 🧫</td>
-          <td>Tailor staging/surveillance → look beyond classic bone/liver mets</td>
+          <td>Tailor staging/surveillance beyond classic bone/liver mets</td>
         </tr>
 
         <tr>
           <td>💉 Chemo Response</td>
           <td>Low pCR (~3–5%) ⚠️; less downstaging</td>
           <td>Higher pCR (~14%) ✅; more BCS possible</td>
-          <td>Chemo sparingly in ILC; biomarker-driven approach</td>
+          <td>Use chemo selectively in ILC; prefer biomarker-guided approach</td>
         </tr>
 
         <tr>
           <td>🧪 Oncotype DX</td>
-          <td>Rarely high RS (~1.5%); many intermediate 🤔</td>
+          <td>Rare high RS (~1.5%); many intermediate 🤔</td>
           <td>Up to 20% high RS</td>
-          <td>Intermediate less predictive in ILC → combine with pathology</td>
+          <td>Intermediate less predictive in ILC → integrate pathology/clinicals</td>
         </tr>
 
         <tr>
           <td>🧿 HER2 & Trastuzumab</td>
-          <td>Classic ILC 3–5%; mixed up to ~10% ➕; trastuzumab works 💉</td>
-          <td>15–20%; standard anti-HER2 therapy</td>
-          <td>Don’t skip HER2 testing in ILC → benefit ≈ IDC</td>
+          <td>Classic ILC 3–5%; mixed up to ~10% ➕; trastuzumab effective 💉</td>
+          <td>15–20%; anti-HER2 standard</td>
+          <td>Always test HER2 in ILC; benefit ≈ IDC</td>
         </tr>
 
         <tr>
           <td>🌡️ Endocrine Therapy</td>
-          <td><b>AIs</b> (letrozole) better than TAM ➕🟢</td>
-          <td>AI benefit clearest in Luminal B</td>
+          <td><b>AIs</b> (letrozole) &gt; tamoxifen 🟢</td>
+          <td>AI benefit clearest in Luminal-B</td>
           <td>Postmeno ILC: <span class="pill good">AI first-line</span></td>
         </tr>
 
         <tr>
           <td>📉 Prognosis</td>
-          <td>Slower growing ⏳ but risk of late recurrence; atypical mets patterns</td>
-          <td>More chemo-sensitive, early downstaging 💥</td>
-          <td>ILC: need MRI, wide margins, watch late relapse & GI mets</td>
+          <td>Slower growing ⏳ but **late** recurrences; atypical GI/peritoneal mets</td>
+          <td>More chemo-sensitive; earlier downstaging 💥</td>
+          <td>ILC: rely on MRI for extent, plan margins, watch late relapse</td>
         </tr>
 
         <tr>
           <td>🧠 Buzzwords</td>
-          <td>“Single-file” 🧵 • “E-cadherin−” 🚫 • “GI mets” 🫄 • “AI>TAM” 💊</td>
+          <td>“Single-file” 🧵 • “E-cadherin−” 🚫 • “GI mets” 🫄 • “AI&gt;TAM” 💊</td>
           <td>“Cohesive glands” 🧱 • “GATA3” 🧬 • “Chemo-responsive” 💥</td>
-          <td>Use for memory recall 🔑</td>
+          <td>Use for rapid recall 🔑</td>
         </tr>
       </tbody>
     </table>
