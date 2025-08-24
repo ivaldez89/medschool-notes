@@ -1,6 +1,8 @@
-/* ---------- Global light/dark variables ---------- */
+/* Tell the browser we support both themes */
+:root { color-scheme: light dark; }
+
+/* ---------- Light defaults ---------- */
 :root{
-  /* Light (defaults) */
   --bg:#ffffff;
   --ink:#111827;          /* main text */
   --muted:#475569;        /* secondary text */
@@ -11,6 +13,7 @@
   --link:#2563eb;
 }
 
+/* ---------- Dark overrides ---------- */
 @media (prefers-color-scheme: dark){
   :root{
     --bg:#0b1020;
@@ -26,6 +29,8 @@
 
 /* ---------- Global element styles ---------- */
 *{box-sizing:border-box}
+html,body{height:100%}
+
 body{
   margin:0; padding:28px;
   background:var(--bg);
@@ -37,7 +42,7 @@ body{
 a{color:var(--link); text-decoration:none}
 a:hover{text-decoration:underline}
 
-/* Containers / cards */
+/* Card/container used on your pages */
 .wrap{
   max-width:1100px; margin:0 auto;
   background:var(--card);
@@ -48,11 +53,19 @@ a:hover{text-decoration:underline}
 
 /* Tables */
 table{width:100%; border-collapse:separate; border-spacing:0}
-th,td{padding:14px 16px; vertical-align:top; border-bottom:1px solid var(--border)}
-thead th{position:sticky; top:0; background:var(--thbg); text-align:left; font-size:14px}
+th,td{
+  padding:14px 16px; vertical-align:top;
+  border-bottom:1px solid var(--border);
+  color:var(--ink);            /* <-- force readable text */
+}
+thead th{
+  position:sticky; top:0;
+  background:var(--thbg);
+  color:var(--ink);            /* <-- readable header text */
+}
 tbody tr:nth-child(odd){background:var(--row)}
 
-/* Little back button */
+/* Back button */
 .back a{
   display:inline-block; margin:12px; padding:8px 12px; border-radius:8px;
   border:1px solid var(--border); background:var(--thbg);
