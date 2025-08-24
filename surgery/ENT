@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ENT — MedSchool Notes</title>
+  <link rel="stylesheet" href="../style.css?v=3" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>👂 ENT (Ear, Nose & Throat)</h1>
+    <p class="muted">Quick links to ENT chapters</p>
+    <ul>
+      <li><a href="hearing-loss.html">Hearing Loss</a></li>
+      <li><a href="sinusitis.html">Sinusitis</a></li>
+      <li><a href="larynx.html">Laryngeal Pathology</a></li>
+    </ul>
+    <p><a href="../">⬅︎ Back to MedSchool Notes home</a></p>
+  </div>
+</body>
+</html>
