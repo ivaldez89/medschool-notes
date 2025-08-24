@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ch. 22 — ENT Surgery</title>
+  <style>
+    :root {
+      --bg: #f0f0f0;
+      --cardGrad1: #ff6b6b;
+      --cardGrad2: #4ecdc4;
+      --ink: #2c3e50;
+      --muted: #7f8c8d;
+      --blue: #2196f3;
+      --blueDeep: #1976d2;
+      --amber: #ff9800;
+      --amberDeep: #e65100;
+      --magenta: #e91e63;
+      --magentaDeep: #ad1457;
+      --purple: #9c27b0;
+      --indigo: #3f51b5;
+      --indigoDeep: #303f9f;
+      --green: #4caf50;
+      --teal: #00bcd4;
+      --red: #f44336;
+      --gold: #ffeb3b;
+    }
+    html, body { margin: 0; padding: 0; }
+    body { background: var(--bg); font-family: Arial, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", sans-serif; padding: 20px; }
+    .protocol-card { max-width: 1200px; margin: 0 auto; background: linear-gradient(135deg, var(--cardGrad1), var(--cardGrad2)); border-radius: 15px; padding: 3px; box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+    .header { background: #fff; border-radius: 12px 12px 0 0; padding: 15px 25px; text-align: center; }
+    .header h1 { margin: 0; color: var(--ink); font-size: 24px; font-weight: 700; }
+    .header p { margin: 6px 0 0 0; color: var(--muted); font-size: 14px; }
+
+    /* Intro section */
+    .intro { background: #fff; padding: 25px; border-bottom: 3px solid #ecf0f1; }
+    .intro-h { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    @media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .callout { padding: 15px; border-radius: 5px; }
+    .callout.scope { background: #e3f2fd; border-left: 4px solid var(--blue); }
+    .callout.times { background: #fff3e0; border-left: 4px solid var(--amber); }
+    .callout.themes { background: #f3e5f5; border-left: 4px solid var(--purple); }
+    .callout ul { margin: 8px 0; padding-left: 20px; line-height: 1.55; }
+
+    /* Base cases grid */
+    .content { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3px; }
+    .case { background: #fff; padding: 20px; border-radius: 0; }
+    .case-header { color: #fff; padding: 12px 15px; margin: -20px -20px 15px -20px; font-weight: 700; font-size: 16px; background: var(--indigo); }
+    .case:nth-child(2) .case-header { background: var(--magenta); }
+    .case:nth-child(3) .case-header { background: var(--amber); }
+    .case:nth-child(4) .case-header { background: var(--purple); }
+    .case:nth-child(5) .case-header { background: var(--blue); }
+    .case:nth-child(6) .case-header { background: #2e7d32; }
+    .case:nth-child(7) .case-header { background: #5d4037; }
+    .case:nth-child(8) .case-header { background: #00796b; }
+    .case:nth-child(9) .case-header { background: #795548; }
+
+    .patient-info { background: #ecf0f1; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 14px; }
+    .section { margin-bottom: 15px; }
+    .section-title { background: #34495e; color: #fff; padding: 8px 12px; margin: 0 0 10px 0; font-weight: 700; font-size: 14px; border-radius: 3px; }
+    .findings { background: #fff3cd; border-left: 4px solid #ffc107; }
+    .next-step { background: #d1ecf1; border-left: 4px solid #17a2b8; }
+    .differential { background: #f8d7da; border-left: 4px solid #dc3545; }
+    .management { background: #d4edda; border-left: 4px solid #28a745; }
+    .what-if { background: #e2e3e5; border-left: 4px solid #6c757d; }
+    .takeaway { background: #cce7ff; border-left: 4px solid #007bff; }
+    .section ul { margin: 8px 0; padding-left: 20px; }
+    .section li { margin-bottom: 6px; font-size: 13px; line-height: 1.45; }
+    .highlight { background: var(--gold); padding: 2px 4px; border-radius: 2px; font-weight: 700; }
+    .critical { color: #d32f2f; font-weight: 700; }
+    .normal { color: #388e3c; font-weight: 700; }
+
+    /* Section headers */
+    .block-h { color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 20px; font-weight: 700; }
+
+    /* Template cards */
+    .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px; }
+    .tile { border-radius: 8px; padding: 15px; border: 2px solid transparent; background: #fff; }
+    .tile .t-h { color: #fff; padding: 8px; margin: -15px -15px 10px -15px; border-radius: 6px 6px 0 0; font-weight: 700; }
+
+    /* Algorithms */
+    .alg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+    .alg { border: 3px solid; border-radius: 12px; padding: 20px; background: #fff; }
+    .alg .h { color: #fff; padding: 10px; margin: -20px -20px 15px -20px; border-radius: 9px 9px 0 0; font-weight: 700; font-size: 16px; }
+    .center { text-align: center; }
+    .arrow { font-size: 20px; margin: 10px 0; display: block; text-align: center; }
+
+    /* Pitfalls */
+    .pit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px; }
+
+    /* Micro Pearls */
+    .micro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px; }
+
+    /* Rapid Fire */
+    .rf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 15px; }
+  </style>
+</head>
+<body>
+  <div class="protocol-card">
+    <div class="header">
+      <h1>Ch. 22 👂 ENT (Ear, Nose & Throat) Surgery</h1>
+      <p>Ear Disease • Weber/Rinne • Malignant OE • Cholesteatoma • Sinusitis • Epistaxis • Peritonsillar Abscess • Laryngeal Pathology • Salivary Disease • Neck Spaces • Congenital Neck Masses</p>
+    </div>
+
+    <!-- Opening Map -->
+    <div class="intro">
+      <div class="intro-h"><h2 style="margin:0">📋 Opening Map — What the Chapter Covers</h2></div>
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="callout scope">
+          <h3 style="margin:0 0 10px 0; color: var(--blueDeep); font-size:16px;">🎯 Scope</h3>
+          <p style="margin:0; font-size:14px; line-height:1.55;">Evaluation and next‑best‑step management for <strong>hearing loss</strong>, ear infections, vertigo red flags, <strong>sinusitis</strong> (medical vs FESS), <strong>epistaxis</strong>, <strong>peritonsillar abscess</strong>, <strong>laryngeal hoarseness/airway</strong>, <strong>salivary gland</strong> pathology, <strong>neck‑space infections</strong>, and <strong>congenital neck masses</strong>.</p>
+        </div>
+        <div class="callout times">
+          <h3 style="margin:0 0 10px 0; color:#f57c00; font-size:16px;">⏰ Time‑Critical Nuggets</h3>
+          <ul style="font-size:14px;">
+            <li><strong>Malignant otitis externa</strong> in diabetics/immunocompromised → aggressive antipseudomonal therapy; look for skull‑base osteomyelitis.</li>
+            <li><strong>Airway first</strong> in Ludwig’s angina/retropharyngeal abscess; secure by awake fiberoptic or trach if needed.</li>
+            <li><strong>Hoarseness &gt;2–4 weeks</strong> (or &gt;2 weeks if age &gt;40/smoker) → <strong>laryngoscopy</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout themes">
+        <h3 style="margin:0 0 12px 0; color:#7b1fa2; font-size:16px;">🔥 High‑Yield Themes</h3>
+        <div class="grid-2" style="gap:15px;">
+          <ul style="margin:0;">
+            <li><strong>Weber/Rinne</strong> decide CHL vs SNHL → directs imaging/referral.</li>
+            <li><strong>Cholesteatoma</strong> = retraction pocket + keratin debris → CT TBone + surgery; complications: ossicular/CN VII/intracranial spread.</li>
+            <li><strong>Sinusitis</strong> &gt;10 days or double‑worsening → antibiotics; chronic → long abx then <strong>FESS</strong> if refractory.</li>
+          </ul>
+          <ul style="margin:0;">
+            <li><strong>Epistaxis</strong> usually anterior (Kiesselbach); posterior bleeds need posterior pack/ligation or IR embolization.</li>
+            <li><strong>Glottic SCC</strong> presents early and spreads less; supraglottic/subglottic have more nodal spread.</li>
+            <li><strong>Branchial vs thyroglossal</strong>: lateral (ant to SCM) vs midline moves with tongue (Sistrunk).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Base Cases -->
+    <div class="content">
+      <!-- Case 1: Weber/Rinne → CHL -->
+      <div class="case">
+        <div class="case-header">🎧 Base Case 1<br>“I can’t hear well in my right ear”</div>
+        <div class="patient-info">
+          <strong>Patient:</strong> 42‑year‑old with gradually decreased hearing on the right; no pain<br/>
+          <strong>Exam:</strong> Weber → right; Rinne negative on right (BC &gt; AC)
+        </div>
+        <div class="section differential">
+          <div class="section-title">🔍 Top Differential</div>
+          <ul>
+            <li>CHL: cerumen impaction, chronic OME, otosclerosis, ossicular disruption</li>
+          </ul>
+        </div>
+        <div class="section next-step">
+          <div class="section-title">⚡ Next Best Step</div>
+          <ul>
+            <li>Focused <strong>otoscopy</strong> (cerumen/TM); <strong>audiogram</strong> if uncertain → treat cause (cerumen removal, OME mgmt)</li>
+          </ul>
+        </div>
+        <div class="section takeaway">
+          <div class="section-title">🎯 NBME Lens</div>
+          <ul>
+            <li>CHL <span class="highlight">lateralizes to diseased ear</span>; SNHL lateralizes away. Rinne normal = AC &gt; BC.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 2: Asymmetric SNHL → Acoustic neuroma -->
+      <div class="case">
+        <div class="case-header">🧠 Base Case 2<br>“Unilateral tinnitus with progressive loss”</div>
+        <div class="patient-info">
+          <strong>Added data:</strong> Weber now to left; Rinne positive bilaterally; progressive unilateral tinnitus
+        </div>
+        <div class="section findings">
+          <div class="section-title">🧪 Pattern</div>
+          <ul>
+            <li>SNHL → suspect <strong>vestibular schwannoma</strong> (acoustic neuroma)</li>
+          </ul>
+        </div>
+        <div class="section next-step">
+          <div class="section-title">🧭 Workup</div>
+          <ul>
+            <li><strong>Audiogram</strong> (asymmetric SNHL) → <strong>MRI IAC/CPA</strong>; discuss microsurgery vs stereotactic RT</li>
+          </ul>
+        </div>
+        <div class="section what-if">
+          <div class="section-title">🔀 Look‑Alikes</div>
+          <ul>
+            <li>Bilateral gradual SNHL in elderly → presbycusis → hearing aids</li>
+            <li>Barotrauma/sudden loss → perilymph fistula or TM rupture → otoscopy first</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 3: Malignant OE -->
+      <div class="case">
+        <div class="case-header">🔥 Base Case 3<br>“Diabetic with a draining, exquisitely tender ear”</div>
+        <div class="patient-info">
+          <strong>Patient:</strong> 69‑year‑old with diabetes; severe otalgia; granulation tissue in canal; fever
+        </div>
+        <div class="section findings">
+          <div class="section-title">🆘 Diagnosis</div>
+          <ul>
+            <li><strong>Malignant otitis externa</strong> (Pseudomonas); skull‑base osteomyelitis risk</li>
+          </ul>
+        </div>
+        <div class="section next-step">
+          <div class="section-title">⚡ Immediate Management</div>
+          <ul>
+            <li>Aggressive <strong>antipseudomonal</strong> therapy (systemic), analgesia, ENT consult; image if osteomyelitis suspected</li>
+          </ul>
+        </div>
+        <div class="section what-if">
+          <div class="section-title">🔀 Forks</div>
+          <ul>
+            <li>Simple OE → topical FQ ± steroid drops + analgesia</li>
+            <li>AOM (bulging immobile TM) → oral abx; tubes if refractory/recurrent</li>
+            <li>OME with hearing/speech delay → tympanostomy tubes (± adenoidectomy in kids)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 4: Cholesteatoma -->
+      <div class="case">
+        <div class="case-header">🧴 Base Case 4<br>“Chronic smelly ear drainage”</div>
+        <div class="patient-info">
+          <strong>Patient:</strong> 23‑year‑old with foul otorrhea, hearing loss, pearly debris in TM retraction pocket
+        </div>
+        <div class="section findings">
+          <div class="section-title">🧠 Dx & Consequences</div>
+          <ul>
+            <li><strong>Cholesteatoma</strong> → ossicular erosion, CN VII injury, intracranial spread</li>
+          </ul>
+        </div>
+        <div class="section next-step">
+          <div class="section-title">🧭 Next Best Step</div>
+          <ul>
+            <li><strong>CT temporal bone</strong> + audiology → <strong>surgical eradication</strong> (often staged)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 5: Epistaxis -->
+      <div class="case">
+        <div class="case-header">👃 Base Case 5<br>“Nose won’t stop bleeding”</div>
+        <div class="patient-info">
+          <strong>Patient:</strong> 58‑year‑old on aspirin; steady ooze from anterior septum
+        </div>
+        <div class="section next-step">
+          <div class="section-title">🧭 Where & First Steps</div>
+          <ul>
+            <li>Usually <strong>anterior (Kiesselbach)</strong> → pinch soft nose + topical vasoconstrictor/anesthetic → silver nitrate/electrocautery → anterior pack if needed</li>
+          </ul>
+        </div>
+        <div class="section what-if">
+          <div class="section-title">🔀 Posterior / Special</div>
+          <ul>
+            <li><strong>Posterior bleed</strong> (elderly, brisk, bilateral) → posterior pack ± endoscopic ligation (sphenopalatine/ethmoidal) or IR embolization</li>
+            <li>Child with recurrent bleeds → consider HHT/coagulopathy</li>
+            <li>Limit oxymetazoline ≤3 days (avoid rhinitis medicamentosa)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 6: Sinusitis -->
+      <div class="case">
+        <div class="case-header">🦠 Base Case 6<br>“Sinus pressure that won’t quit”</div>
+        <div class="patient-info">
+          <strong>Patient:</strong> 34‑year‑old with URI 12 days ago; facial pain + purulent drainage
+        </div>
+        <div class="section findings">
+          <div class="section-title">🧪 Dx</div>
+          <ul>
+            <li><strong>Acute bacterial rhinosinusitis</strong> (S. pneumo, H. flu, M. cat)</li>
+          </ul>
+        </div>
+        <div class="section next-step">
+          <div class="section-title">⚡ Next Step</div>
+          <ul>
+            <li>Antibiotics + adjuncts (saline, decongestants; antihistamines if allergic); imaging not initially needed</li>
+          </ul>
+        </div>
+        <div class="section what-if">
+          <div class="section-title">🔁 Chronic Course</div>
+          <ul>
+            <li>&gt;3 months despite maximal meds 4–6 wks → <strong>CT</strong> to map anatomy → <strong>FESS</strong> if refractory</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 7: PTA -->
+      <div class="case">
+        <div class="case-header">🗣️ Base Case 7<br>“Hot‑potato voice”</div>
+        <div class="patient-info">
+          <strong>Patient:</strong> 21‑year‑old with fever, trismus, muffled voice; uvula deviates away from bulging tonsil
+        </div>
+        <div class="section findings">
+          <div class="section-title">🆘 Diagnosis</div>
+          <ul>
+            <li><strong>Peritonsillar abscess</strong> (PTA)</li>
+          </ul>
+        </div>
+        <div class="section management">
+          <div class="section-title">🏥 Management</div>
+          <ul>
+            <li>Drain (needle aspiration or I&D) + antibiotics; consider tonsillectomy for recurrence</li>
+            <li>Watch for parapharyngeal spread, mediastinitis, airway compromise</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 8: Laryngeal cancer -->
+      <div class="case">
+        <div class="case-header">🎤 Base Case 8<br>“Hoarseness for 3 weeks”</div>
+        <div class="patient-info">
+          <strong>Patient:</strong> 62‑year‑old smoker; progressive hoarseness
+        </div>
+        <div class="section next-step">
+          <div class="section-title">🧭 Next Step</div>
+          <ul>
+            <li><strong>Laryngoscopy</strong> (any hoarseness &gt;2–4 wks; &gt;2 wks if &gt;40 yrs) → biopsy & stage</li>
+          </ul>
+        </div>
+        <div class="section findings">
+          <div class="section-title">📌 Pearls</div>
+          <ul>
+            <li><strong>Glottic</strong> tumors present early; minimal nodal spread vs supraglottic/subglottic</li>
+            <li>Early → RT for voice preservation or conservative surgery; advanced → partial/total laryngectomy ± RT/chemo</li>
+            <li>Airway emergency → cricothyrotomy</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 9: Ludwig's / RPA -->
+      <div class="case">
+        <div class="case-header">🦷 Base Case 9<br>“Jaw swelling + trouble swallowing”</div>
+        <div class="patient-info">
+          <strong>Patient:</strong> 55‑year‑old with poor dentition, fever, brawny tender submandibular swelling; elevates floor of mouth
+        </div>
+        <div class="section next-step">
+          <div class="section-title">🧭 Immediate Priorities</div>
+          <ul>
+            <li><strong>Ludwig’s angina</strong> → <span class="critical">airway first</span> (awake fiberoptic/nasotracheal; trach if needed) → IV abx → I&D if non‑resolving</li>
+          </ul>
+        </div>
+        <div class="section what-if">
+          <div class="section-title">🔀 Retropharyngeal Abscess</div>
+          <ul>
+            <li>Toxic child with torticollis/stridor, bulging posterior wall → lateral neck film/CT → airway + drain + abx; beware spread to danger space → mediastinum</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Case 10: Salivary / Parotid mass & congenital -->
+      <div class="case">
+        <div class="case-header">🥼 Base Case 10<br>“Parotid mass / Neck lumps in kids”</div>
+        <div class="patient-info">
+          <strong>Parotid:</strong> 66‑year‑old man with painless, mobile parotid tail mass. <strong>Peds:</strong> 7‑year‑old with lateral neck mass anterior to SCM
+        </div>
+        <div class="section findings">
+          <div class="section-title">🧠 Likely Dx & Workup</div>
+          <ul>
+            <li>Older men: <strong>Warthin tumor</strong> (can be bilateral). Workup: US/CT/MRI as needed; <strong>FNA</strong>; plan parotidectomy with facial nerve preservation.</li>
+            <li>Pleomorphic adenoma = most common benign (middle‑aged women) → parotidectomy (malignant transformation risk)</li>
+            <li>Mucoepidermoid = most common malignant; adenoid cystic → perineural spread + distant mets</li>
+          </ul>
+        </div>
+        <div class="section what-if">
+          <div class="section-title">🔀 Sialolithiasis & Congenital</div>
+          <ul>
+            <li>Meal‑time pain/swelling under tongue → <strong>sialolithiasis of Wharton’s duct</strong> → transoral removal if distal; hilar → gland excision</li>
+            <li>Lateral, anterior to SCM with recurrent drainage → <strong>2nd branchial cleft cyst</strong> → complete tract excision after infection control</li>
+            <li>Midline mass moves with tongue → <strong>thyroglossal duct cyst</strong> → <strong>Sistrunk</strong> after confirming normal thyroid by US</li>
+            <li>Transilluminating floor‑of‑mouth/neck mass → <strong>cystic hygroma</strong> → imaging + staged excision/sclerotherapy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Template B: Imaging/Labs (ENT) -->
+    <div class="intro">
+      <div class="block-h" style="background: linear-gradient(135deg, var(--amber) 0%, var(--amberDeep) 100%);">🔬 Template B — Imaging/Labs</div>
+      <div class="tiles">
+        <div class="tile" style="border-color: var(--green);">
+          <div class="t-h" style="background: var(--green);">Audiogram</div>
+          <div style="font-size:14px; line-height:1.55;">
+            <p><strong>Shows:</strong> Degree/type of hearing loss</p>
+            <p><strong>Indications:</strong> Any persistent hearing complaint</p>
+            <p><strong>Trigger:</strong> <strong>Asymmetric SNHL</strong> → MRI IAC</p>
+            <p><strong>Pearl:</strong> Pair with Weber/Rinne</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--indigo);">
+          <div class="t-h" style="background: var(--indigo);">MRI IAC</div>
+          <div style="font-size:14px; line-height:1.55;">
+            <p><strong>Shows:</strong> CPA/IAC lesions</p>
+            <p><strong>Indications:</strong> Asymmetric SNHL/tinnitus</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--blue);">
+          <div class="t-h" style="background: var(--blue);">CT Sinus (non‑contrast)</div>
+          <div style="font-size:14px; line-height:1.55;">
+            <p><strong>Shows:</strong> Osteomeatal anatomy</p>
+            <p><strong>Indications:</strong> Refractory/chronic sinusitis; FESS planning</p>
+            <p><strong>Trigger:</strong> Medical failure after 4–6 weeks</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--magenta);">
+          <div class="t-h" style="background: var(--magenta);">CT Temporal Bone</div>
+          <div style="font-size:14px; line-height:1.55;">
+            <p><strong>Shows:</strong> Cholesteatoma/ossicles</p>
+            <p><strong>Indications:</strong> Chronic drainage/CHL with keratin debris</p>
+            <p><strong>Use:</strong> Surgical planning</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--teal);">
+          <div class="t-h" style="background: var(--teal);">Lateral Neck Soft‑Tissue Film/CT</div>
+          <div style="font-size:14px; line-height:1.55;">
+            <p><strong>Shows:</strong> Retropharyngeal width; abscess</p>
+            <p><strong>Indications:</strong> Toxic child with stridor/torticollis</p>
+            <p><strong>Pearl:</strong> Tracks to danger space → mediastinum</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Template C: Pharmacology (ENT) -->
+    <div class="intro">
+      <div class="block-h" style="background: linear-gradient(135deg, var(--magenta) 0%, var(--magentaDeep) 100%);">💊 Template C — Pharmacology (ENT)</div>
+      <div class="tiles" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+        <div class="tile" style="border-color: var(--green);">
+          <div class="t-h" style="background: var(--green);">Amoxicillin (peds high‑dose)</div>
+          <div style="font-size:13px; line-height:1.45;">
+            <p><strong>Dose:</strong> 80–90 mg/kg/day PO ÷ BID</p>
+            <p><strong>Use:</strong> First‑line AOM in many settings</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--indigo);">
+          <div class="t-h" style="background: var(--indigo);">Amoxicillin‑clavulanate</div>
+          <div style="font-size:13px; line-height:1.45;">
+            <p><strong>Use:</strong> AOM with β‑lactamase risk/failure; sinusitis</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--amber);">
+          <div class="t-h" style="background: var(--amber);">Ciprofloxacin/dexamethasone otic</div>
+          <div style="font-size:13px; line-height:1.45;">
+            <p><strong>Use:</strong> OE; safe with perforated TM</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--blue);">
+          <div class="t-h" style="background: var(--blue);">Oxymetazoline nasal</div>
+          <div style="font-size:13px; line-height:1.45;">
+            <p><strong>Use:</strong> Epistaxis prep; congestion</p>
+            <p><strong>Limit:</strong> ≤3 days (avoid rhinitis medicamentosa)</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--purple);">
+          <div class="t-h" style="background: var(--purple);">Fluticasone nasal</div>
+          <div style="font-size:13px; line-height:1.45;">
+            <p><strong>Use:</strong> Polyps/chronic rhinitis/sinusitis adjunct</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--red);">
+          <div class="t-h" style="background: var(--red);">Antipseudomonal therapy</div>
+          <div style="font-size:13px; line-height:1.45;">
+            <p><strong>Use:</strong> <strong>Malignant OE</strong> (systemic coverage; tailor to culture)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Algorithms -->
+    <div class="intro">
+      <div class="block-h" style="background: linear-gradient(135deg, var(--purple) 0%, var(--indigo) 100%);">🔄 Algorithms (Diagnostic & Management)</div>
+      <div class="alg-grid">
+        <!-- A. Hearing Loss -->
+        <div class="alg" style="border-color: var(--green);">
+          <div class="h" style="background: var(--green);">🎧 A. Hearing Loss</div>
+          <div class="center">Complaint of hearing loss → <strong>Weber/Rinne</strong></div>
+          <span class="arrow">↓</span>
+          <ul style="font-size:14px;">
+            <li><strong>CHL</strong> (Weber → affected; Rinne negative) → otoscopy (cerumen/TM) → treat OME/AOM/cerumen; consider ossicles</li>
+            <li><strong>SNHL</strong> (Weber → away; Rinne normal) → <strong>audiogram</strong> → asymmetric? → <strong>MRI IAC</strong></li>
+          </ul>
+        </div>
+        <!-- B. Otitis Media/Effusion -->
+        <div class="alg" style="border-color: var(--amber);">
+          <div class="h" style="background: var(--amber);">🦠 B. Otitis Media & Effusion</div>
+          <ul style="font-size:14px;">
+            <li><strong>AOM</strong> (bulging, red, immobile TM) → analgesia + abx → tubes if refractory/recurrent</li>
+            <li><strong>OME</strong> (effusion, no acute signs) → observe vs tubes if chronic hearing/speech impact (± adenoidectomy)</li>
+          </ul>
+        </div>
+        <!-- C. Epistaxis -->
+        <div class="alg" style="border-color: var(--blue);">
+          <div class="h" style="background: var(--blue);">👃 C. Epistaxis</div>
+          <div class="center">Assess site with speculum (most anterior)</div>
+          <span class="arrow">↓</span>
+          <ul style="font-size:14px;">
+            <li><strong>Anterior</strong> → pinch + vasoconstrictor/anesthetic → cautery → anterior pack</li>
+            <li><strong>Posterior/refractory</strong> → posterior pack → endoscopic ligation or IR embolization</li>
+          </ul>
+        </div>
+        <!-- D. Sinusitis -->
+        <div class="alg" style="border-color: var(--indigo);">
+          <div class="h" style="background: var(--indigo);">🫁 D. Sinusitis</div>
+          <ul style="font-size:14px;">
+            <li>Viral URI → &gt;10 days / double‑worsening → acute bacterial → abx + adjuncts</li>
+            <li>Chronic &gt;3 mo or recurrent → maximal abx 4–6 wks → CT → <strong>FESS</strong> if refractory</li>
+          </ul>
+        </div>
+        <!-- E. PTA -->
+        <div class="alg" style="border-color: var(--red);">
+          <div class="h" style="background: var(--red);">🗣️ E. Peritonsillar Abscess</div>
+          <ul style="font-size:14px;">
+            <li>Fever + trismus + uvular deviation → <strong>drain</strong> (needle or I&D) + abx</li>
+            <li>Watch for parapharyngeal spread/airway compromise</li>
+          </ul>
+        </div>
+        <!-- F. Laryngeal Cancer/Hoarseness -->
+        <div class="alg" style="border-color: #5d4037;">
+          <div class="h" style="background: #5d4037;">🎤 F. Hoarseness / Laryngeal Cancer</div>
+          <ul style="font-size:14px;">
+            <li>Hoarseness &gt;2–4 wks (or &gt;2 wks if &gt;40/smoker) → <strong>laryngoscopy</strong> → biopsy & stage</li>
+            <li>Early glottic → RT or conservative surgery; advanced → laryngectomy ± RT/chemo</li>
+            <li>Airway emergency → cricothyrotomy</li>
+          </ul>
+        </div>
+        <!-- G. Salivary Gland Mass -->
+        <div class="alg" style="border-color: var(--teal);">
+          <div class="h" style="background: var(--teal);">🥼 G. Salivary Gland Mass</div>
+          <ul style="font-size:14px;">
+            <li>Parotid/submandibular mass → US/CT/MRI + <strong>FNA</strong></li>
+            <li>Benign (pleomorphic/Warthin) → parotidectomy (nerve‑sparing)</li>
+            <li>Malignant (mucoepidermoid/adenoid cystic) → gland resection ± neck dissection + RT</li>
+            <li>Sialolithiasis (meal‑time pain) → transoral removal if distal; hilar → gland excision</li>
+          </ul>
+        </div>
+        <!-- H. Neck Space Infections -->
+        <div class="alg" style="border-color: var(--magenta);">
+          <div class="h" style="background: var(--magenta);">🦷 H. Neck Space Infections</div>
+          <ul style="font-size:14px;">
+            <li><strong>Ludwig’s</strong>: secure airway → IV abx → I&D if needed</li>
+            <li><strong>Retropharyngeal abscess</strong>: lateral neck film/CT → airway + drain + abx (danger space → mediastinum)</li>
+          </ul>
+        </div>
+        <!-- I. Congenital Neck Masses -->
+        <div class="alg" style="border-color: var(--purple);">
+          <div class="h" style="background: var(--purple);">👶 I. Congenital Neck Masses</div>
+          <ul style="font-size:14px;">
+            <li>Midline, moves with tongue → <strong>TGDC</strong> → <strong>Sistrunk</strong> after confirming normal thyroid</li>
+            <li>Lateral anterior to SCM → <strong>2nd branchial cleft cyst</strong> → complete excision after infection control</li>
+            <li>Transilluminating cystic hygroma → imaging + staged excision/sclerotherapy; plan airway</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pitfalls & Look‑Alikes -->
+    <div class="intro" style="border-bottom:3px solid #ecf0f1;">
+      <div class="block-h" style="background: linear-gradient(135deg, var(--red) 0%, #d32f2f 100%);">⚠️ Pitfalls & Look‑Alikes — NBME Trap Deck</div>
+      <div class="pit-grid">
+        <div class="tile" style="border-color: var(--blue);">
+          <div class="t-h" style="background: var(--blue);">Weber/Rinne Logic</div>
+          <div style="font-size:14px;">
+            <p>Don’t mix directions: <strong>CHL → toward</strong> diseased ear; <strong>SNHL → away</strong>. Rinne positive = AC &gt; BC.</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--amber);">
+          <div class="t-h" style="background: var(--amber);">OE vs Malignant OE</div>
+          <div style="font-size:14px;">
+            <p>Diabetics/immunocompromised with granulation tissue & severe pain → systemic antipseudomonal therapy; not just drops.</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--magenta);">
+          <div class="t-h" style="background: var(--magenta);">Cholesteatoma</div>
+          <div style="font-size:14px;">
+            <p>Medical therapy won’t cure; plan surgery. Watch for ossicular/CN VII/intracranial complications.</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--indigo);">
+          <div class="t-h" style="background: var(--indigo);">Epistaxis Steps</div>
+          <div style="font-size:14px;">
+            <p>Most are anterior. Posterior bleeds need posterior pack/ligation; limit decongestants to ≤3 days.</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: #5d4037;">
+          <div class="t-h" style="background: #5d4037;">Hoarseness</div>
+          <div style="font-size:14px;">
+            <p>Hoarseness &gt;2–4 weeks → scope. Don’t delay with long PPI trials in smokers.</p>
+          </div>
+        </div>
+        <div class="tile" style="border-color: var(--teal);">
+          <div class="t-h" style="background: var(--teal);">Neck Space = Airway</div>
+          <div style="font-size:14px;">
+            <p>Ludwig’s/RPA are airway diseases first. Secure airway before incision.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Micro Pearls & Numbers -->
+    <div class="intro">
+      <div class="block-h" style="background: linear-gradient(135deg, var(--indigo) 0%, var(--indigoDeep) 100%);">💎 Micro Pearls & Numbers Worth Memorizing</div>
+      <div class="micro-grid">
+        <div class="alg" style="border-color: var(--blue);">
+          <div class="h" style="background: var(--blue);">Weber/Rinne</div>
+          <div style="font-size:14px;">512‑Hz fork; Rinne positive = AC &gt; BC (normal/SNHL).</div>
+        </div>
+        <div class="alg" style="border-color: var(--amber);">
+          <div class="h" style="background: var(--amber);">Sinusitis Rules</div>
+          <div style="font-size:14px;">Bacterial if &gt;10 days or severe/double‑worsening. Chronic = &gt;3 months.</div>
+        </div>
+        <div class="alg" style="border-color: var(--green);">
+          <div class="h" style="background: var(--green);">PTA Drainage</div>
+          <div style="font-size:14px;">Needle aspiration, I&D, or tonsillectomy for recurrence.</div>
+        </div>
+        <div class="alg" style="border-color: var(--purple);">
+          <div class="h" style="background: var(--purple);">Glottic vs Supra/Sub</div>
+          <div style="font-size:14px;">Glottic has sparse lymphatics → earlier detection & less nodal spread.</div>
+        </div>
+        <div class="alg" style="border-color: #00796b;">
+          <div class="h" style="background: #00796b;">Stones in Salivary</div>
+          <div style="font-size:14px;">Submandibular &gt; parotid; Wharton’s duct stones often removable transorally.</div>
+        </div>
+        <div class="alg" style="border-color: var(--magenta);">
+          <div class="h" style="background: var(--magenta);">Branchial Arch Table</div>
+          <div style="font-size:14px;">Map derivatives to fistula courses & nerve associations (visual table p. 357 anchor).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rapid‑Fire Exam Tips & Vignettes -->
+    <div class="intro" style="border-bottom:3px solid #ecf0f1;">
+      <div class="block-h" style="background: linear-gradient(135deg, #ff5722 0%, #bf360c 100%);">🚀 Rapid‑Fire Exam Tips & Vignettes</div>
+      <div class="rf-grid">
+        <div class="alg" style="border-color: var(--blue);">
+          <div class="h" style="background: var(--blue);">1️⃣ Weber → left; Rinne normal both</div>
+          <ul style="font-size:14px;">
+            <li><strong>Objective:</strong> Right SNHL; MRI IAC if asymmetric.</li>
+            <li><em>Tempting wrong:</em> Cerumen removal (Rinne wasn’t negative).</li>
+          </ul>
+        </div>
+        <div class="alg" style="border-color: var(--amber);">
+          <div class="h" style="background: var(--amber);">2️⃣ Diabetic with canal granulation</div>
+          <ul style="font-size:14px;">
+            <li><strong>Objective:</strong> Malignant OE → systemic antipseudomonal therapy.</li>
+            <li><em>Tempting wrong:</em> Topical drops only.</li>
+          </ul>
+        </div>
+        <div class="alg" style="border-color: var(--magenta);">
+          <div class="h" style="background: var(--magenta);">3️⃣ Pearly mass in retraction pocket</div>
+          <ul style="font-size:14px;">
+            <li><strong>Objective:</strong> Cholesteatoma → CT + surgery.</li>
+            <li><em>Tempting wrong:</em> Reassure/antibiotics alone.</li>
+          </ul>
+        </div>
+        <div class="alg" style="border-color: var(--indigo);">
+          <div class="h" style="background: var(--indigo);">4️⃣ Nosebleed at anterior septum</div>
+          <ul style="font-size:14px;">
+            <li><strong>Objective:</strong> Pinch + vasoconstrictor + cautery; ≤3 days decongestants.</li>
+            <li><em>Tempting wrong:</em> Posterior pack first.</li>
+          </ul>
+        </div>
+        <div class="alg" style="border-color: var(--teal);">
+          <div class="h" style="background: var(--teal);">5️⃣ &gt;3 months sinus symptoms</div>
+          <ul style="font-size:14px;">
+            <li><strong>Objective:</strong> CT then FESS after maximal medical therapy.</li>
+            <li><em>Tempting wrong:</em> Repeat plain films.</li>
+          </ul>
+        </div>
+        <div class="alg" style="border-color: var(--red);">
+          <div class="h" style="background: var(--red);">6️⃣ Hot‑potato voice + uvular deviation</div>
+          <ul style="font-size:14px;">
+            <li><strong>Objective:</strong> PTA → drain + antibiotics.</li>
+            <li><em>Tempting wrong:</em> Steroids alone.</li>
+          </ul>
+        </div>
+        <div class="alg" style="border-color: #5d4037;">
+          <div class="h" style="background: #5d4037;">7️⃣ Smoker with 3‑week hoarseness</div>
+          <ul style="font-size:14px;">
+            <li><strong>Objective:</strong> Laryngoscopy now.</li>
+            <li><em>Tempting wrong:</em> Long PPI trial.</li>
+          </ul>
+        </div>
+        <div class="alg" style="border-color: var(--green);">
+          <div class="h" style="background: var(--green);">8️⃣ Meal‑time submandibular pain</div>
+          <ul style="font-size:14px;">
+            <li><strong>Objective:</strong> Sialolithiasis → transoral removal if distal.</li>
+            <li><em>Tempting wrong:</em> Parotidectomy.</li>
+          </ul>
+        </div>
+        <div class="alg" style="border-color: var(--purple);">
+          <div class="h" style="background: var(--purple);">9️⃣ Bilateral parotid tail masses in older man</div>
+          <ul style="font-size:14px;">
+            <li><strong>Objective:</strong> Warthin likely.</li>
+            <li><em>Tempting wrong:</em> Assume metastases.</li>
+          </ul>
+        </div>
+        <div class="alg" style="border-color: var(--magenta);">
+          <div class="h" style="background: var(--magenta);">🔟 Midline neck mass moves with tongue</div>
+          <ul style="font-size:14px;">
+            <li><strong>Objective:</strong> TGDC → Sistrunk after confirming normal thyroid.</li>
+            <li><em>Tempting wrong:</em> Simple cyst excision.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Wrap -->
+    <div class="intro">
+      <div class="block-h" style="background: linear-gradient(135deg, var(--green) 0%, #388e3c 100%);">🎯 Final Wrap</div>
+      <div class="tiles" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap:20px;">
+        <div class="tile" style="border-color: var(--green);">
+          <div class="t-h" style="background: var(--green);">🎧 Hearing Loss</div>
+          <ul style="font-size:14px;">
+            <li>Weber/Rinne steer the tree; <strong>asymmetry → MRI IAC</strong></li>
+          </ul>
+        </div>
+        <div class="tile" style="border-color: var(--amber);">
+          <div class="t-h" style="background: var(--amber);">🦠 Sinusitis</div>
+          <ul style="font-size:14px;">
+            <li>&gt;10 days/double‑worsening → abx; chronic → long meds → CT → <strong>FESS</strong> if refractory</li>
+          </ul>
+        </div>
+        <div class="tile" style="border-color: var(--blue);">
+          <div class="t-h" style="background: var(--blue);">👃 Epistaxis</div>
+          <ul style="font-size:14px;">
+            <li>Anterior most common; posterior needs pack/ligation or IR</li>
+          </ul>
+        </div>
+        <div class="tile" style="border-color: var(--red);">
+          <div class="t-h" style="background: var(--red);">🆘 Airway First</div>
+          <ul style="font-size:14px;">
+            <li>Ludwig’s & RPA: secure airway before incision</li>
+          </ul>
+        </div>
+        <div class="tile" style="border-color: var(--magenta);">
+          <div class="t-h" style="background: var(--magenta);">🧴 Cholesteatoma</div>
+          <ul style="font-size:14px;">
+            <li>Surgery is definitive; CT maps anatomy</li>
+          </ul>
+        </div>
+        <div class="tile" style="border-color: #5d4037;">
+          <div class="t-h" style="background: #5d4037;">🎤 Hoarseness</div>
+          <ul style="font-size:14px;">
+            <li>&gt;2–4 wks → <strong>laryngoscopy</strong>; glottic spreads less</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin:18px 0 0 0; font-weight:700; text-align:center;">End of Chapter – ENT Surgery</p>
+    </div>
+  </div>
+</body>
+</html>
