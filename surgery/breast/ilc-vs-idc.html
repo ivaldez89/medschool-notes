@@ -5,15 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ILC vs IDC — Clinical, Molecular & Therapeutic Differences</title>
 
-  <!-- ✅ Global stylesheet -->
+  <!-- Global stylesheet -->
   <link rel="stylesheet" href="../../style.css?v=3" />
 
-  <!-- Page-specific styles -->
+  <!-- Page-specific styles (NO body{} here; keep everything inside this single block) -->
   <style>
-    header{
-      /* your header styles here */
-    }
-  </style>
     header{
       padding:22px; display:flex; align-items:center; justify-content:space-between; gap:12px;
       background: radial-gradient(1200px 200px at 20% -40%, rgba(245,158,11,.15), transparent 70%),
@@ -27,6 +23,15 @@
     .badge{display:inline-flex; align-items:center; gap:6px; font-weight:700; padding:6px 10px; border-radius:10px; font-size:12px; color:#0b1020; background:white}
     .badge.ilc{background:linear-gradient(135deg,#fde68a,#f59e0b)}
     .badge.idc{background:linear-gradient(135deg,#93c5fd,#3b82f6)}
+
+    /* Neat stacked nav buttons */
+    nav.breadcrumbs{padding:8px 12px 0}
+    .btn{
+      display:inline-block; margin:10px 12px 0 12px; padding:9px 14px;
+      border:1px solid var(--border); border-radius:8px; background:var(--thbg);
+      color:var(--link); text-decoration:none; font-weight:600;
+    }
+    .btn:hover{filter:brightness(0.97)}
     .col-label{width:28%} .col-ilc,.col-idc{width:36%}
     .pill{display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:2px 8px; font-size:12px; font-weight:700}
     .pill.good{background: rgba(16,185,129,.12); border:1px solid rgba(16,185,129,.35)}
@@ -52,9 +57,11 @@
       </div>
     </header>
 
-    <!-- Back links -->
-    <p class="back"><a href="index.html">⬅︎ Back to Breast Home</a></p>
-    <p class="back"><a href="../">⬅︎ Back to Surgery Home</a></p>
+    <!-- Clean stacked nav -->
+    <nav class="breadcrumbs">
+      <a class="btn" href="index.html">Back to Breast Home</a>
+      <a class="btn" href="../">Back to Surgery Home</a>
+    </nav>
 
     <table role="table" aria-label="ILC vs IDC Comparison">
       <thead>
