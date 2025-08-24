@@ -1,0 +1,25 @@
+/* Light mode (Day mode) */
+@media (prefers-color-scheme: light) {
+  body{
+    margin:0; padding:28px;
+    background:#ffffff;   /* white */
+    color:#111827;        /* dark text */
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+    line-height:1.45;
+  }
+  table th{background:#f3f4f6; color:#111827;}
+  table tr:nth-child(odd){background:#f9fafb;}
+}
+
+/* Dark mode (Night mode) */
+@media (prefers-color-scheme: dark) {
+  body{
+    margin:0; padding:28px;
+    background:linear-gradient(135deg,#0b1020 0%, #0f172a 50%, #0b1020 100%);
+    color:#e5e7eb;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+    line-height:1.45;
+  }
+  table th{background:#111827; color:#e5e7eb;}
+  table tr:nth-child(odd){background:#0b1223;}
+}
