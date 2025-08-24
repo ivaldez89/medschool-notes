@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ILC vs IDC — Clinical, Molecular & Therapeutic Differences</title>
+<style>
+  :root{
+    --bg:#0f172a;          
+    --card:#111827;        
+    --ink:#e5e7eb;         
+    --muted:#94a3b8;       
+    --ilc:#f59e0b;         
+    --idc:#60a5fa;         
+    --good:#10b981;        
+    --warn:#f43f5e;        
+    --row:#0b1223;         
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:28px;
+    background:linear-gradient(135deg,#0b1020 0%, #0f172a 50%, #0b1020 100%);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+    color:var(--ink); line-height:1.45;
+  }
+  .wrap{
+    max-width:1100px; margin:0 auto;
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border:1px solid rgba(148,163,184,.25);
+    border-radius:20px; box-shadow: 0 20px 50px rgba(0,0,0,.45);
+    overflow:hidden;
+  }
+  header{
+    padding:22px 22px 8px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    background: radial-gradient(1200px 200px at 20% -40%, rgba(245,158,11,.15), transparent 70%),
+               radial-gradient(900px 180px at 90% -30%, rgba(96,165,250,.15), transparent 70%);
+    border-bottom:1px solid rgba(148,163,184,.25);
+  }
+  .title{
+    font-size:22px; font-weight:800; letter-spacing:.2px;
+  }
+  .chips{display:flex; gap:8px; flex-wrap:wrap}
+  .chip{
+    border:1px solid rgba(148,163,184,.3);
+    padding:6px 10px; border-radius:999px; font-size:12px; color:var(--muted);
+    backdrop-filter: blur(6px);
+  }
+  .legend{display:flex; gap:8px; align-items:center}
+  .badge{
+    display:inline-flex; align-items:center; gap:6px;
+    font-weight:700; padding:6px 10px; border-radius:10px; font-size:12px;
+    color:#0b1020; background:white;
+  }
+  .badge.ilc{background: linear-gradient(135deg,#fde68a,#f59e0b); color:#1f2937}
+  .badge.idc{background: linear-gradient(135deg,#93c5fd,#3b82f6); color:#0b1020}
+  table{
+    width:100%; border-collapse:separate; border-spacing:0;
+  }
+  th, td{
+    padding:14px 16px; vertical-align:top;
+    border-bottom:1px solid rgba(148,163,184,.18);
+  }
+  thead th{
+    position:sticky; top:0; z-index:1;
+    background:linear-gradient(180deg, rgba(17,24,39,.9), rgba(17,24,39,.85));
+    backdrop-filter: blur(4px);
+    text-align:left; font-size:14px; letter-spacing:.2px;
+  }
+  tbody tr:nth-child(odd){ background: var(--row);}
+  .col-label{width:28%}
+  .col-ilc, .col-idc{width:36%}
+  .pill{
+    display:inline-flex; align-items:center; gap:6px;
+    border-radius:999px; padding:2px 8px; font-size:12px; font-weight:700;
+    border:1px solid rgba(148,163,184,.25); color:var(--ink);
+  }
+  .pill.good{background: rgba(16,185,129,.12); border-color: rgba(16,185,129,.35)}
+  .pill.warn{background: rgba(244,63,94,.12); border-color: rgba(244,63,94,.35)}
+  .mini{display:inline-block; font-size:12px; color:var(--muted); margin-top:4px}
+  .key{display:inline-flex; gap:8px; flex-wrap:wrap; margin-left:4px}
+  .k{display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--muted)}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .dot.ilc{background:var(--ilc)}
+  .dot.idc{background:var(--idc)}
+  .emoji{font-size:18px}
+  .buzz{font-weight:700}
+  .ref{padding:14px 22px; color:var(--muted); font-size:12px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="title">ILC vs IDC — Differences & Therapeutic Implications</div>
+        <div class="chips">
+          <span class="chip">🧬 CDH1 / E-cadherin</span>
+          <span class="chip">🌸 ER-positive predominance</span>
+          <span class="chip">💊 AI & Trastuzumab decisions</span>
+          <span class="chip">🧭 Metastatic tropism</span>
+        </div>
+      </div>
+      <div class="legend">
+        <span class="badge ilc">🟡 ILC</span>
+        <span class="badge idc">🔵 IDC</span>
+      </div>
+    </header>
+
+    <table role="table" aria-label="ILC vs IDC Comparison">
+      <thead>
+        <tr>
+          <th class="col-label">🧩 Category</th>
+          <th class="col-ilc">🟡 ILC</th>
+          <th class="col-idc">🔵 IDC</th>
+          <th>🎯 Therapeutic Implications</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>📊 Prevalence</td>
+          <td>~10% of breast cancers</td>
+          <td>Most common subtype</td>
+          <td>Often underrepresented in trials → avoid one-size-fits-all.</td>
+        </tr>
+        <tr>
+          <td>🔬 Morphology</td>
+          <td><b>Single-file</b> non-cohesive cells; hallmark = <b>E-cadherin loss</b></td>
+          <td>Cohesive nests/glands; variable</td>
+          <td>E-cadherin loss = diagnostic marker; diffuse growth pattern.</td>
+        </tr>
+        <tr>
+          <td>🧬 Genomics</td>
+          <td>↑ CDH1, PTEN loss/AKT, TBX3, FOXA1; ↓ GATA3</td>
+          <td>More GATA3; rare CDH1 loss</td>
+          <td>Different ER cofactors → therapy response differs.</td>
+        </tr>
+        <tr>
+          <td>🌸 Hormone/Proliferation</td>
+          <td>Mostly ER+, HER2–; low Ki-67; luminal A–like</td>
+          <td>Heterogeneous (luminal A/B, HER2+, TNBC)</td>
+          <td><span class="pill good">Endocrine-leaning</span> strategy in ILC.</td>
+        </tr>
+        <tr>
+          <td>🧭 Spread</td>
+          <td>GI, peritoneum, ovaries</td>
+          <td>Bone, lung, liver</td>
+          <td>Surveillance tailored to pattern.</td>
+        </tr>
+        <tr>
+          <td>💉 Chemo Response</td>
+          <td>Lower pCR (3–5%); less downstaging</td>
+          <td>Higher pCR (~14%); better BCS</td>
+          <td>Chemo selectively in ILC; biomarker guided.</td>
+        </tr>
+        <tr>
+          <td>🧪 Oncotype DX</td>
+          <td>Rare high RS (~1.5%); many intermediate</td>
+          <td>Up to 20% high RS</td>
+          <td>Intermediate RS less informative in ILC.</td>
+        </tr>
+        <tr>
+          <td>🧿 HER2 & Trastuzumab</td>
+          <td>3–10%; trastuzumab effective</td>
+          <td>15–20%; trastuzumab standard</td>
+          <td>Test all ILC for HER2; benefit ≈ IDC.</td>
+        </tr>
+        <tr>
+          <td>🌡️ Endocrine Therapy</td>
+          <td><b>AI (letrozole)</b> > tamoxifen</td>
+          <td>AI better mainly in luminal B</td>
+          <td><span class="pill good">Prefer AI</span> in postmeno ILC.</td>
+        </tr>
+        <tr>
+          <td>🧠 Buzzwords</td>
+          <td>“Single-file”, “E-cadherin−”, “GI/peritoneal mets”, “AI>TAM”</td>
+          <td>“Cohesive glands”, “GATA3”, “Chemo-responsive”</td>
+          <td>Use for memory anchors.</td>
+        </tr>
+        <tr>
+          <td>🩺 Example Presentation</td>
+          <td>Postmeno, ER+ subtle thickening; underestimated on imaging; later peritoneal spread</td>
+          <td>Palpable spiculated mass; bone pain if metastatic</td>
+          <td>ILC: consider MRI for extent; endocrine-first.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ref">
+      Source: Barroso-Sousa R, Metzger-Filho O. <i>Differences between invasive lobular and invasive ductal carcinoma of the breast: results and therapeutic implications.</i> PMCID: PMC4952020, PMID: 27482285.
+    </div>
+  </div>
+</body>
+</html>
