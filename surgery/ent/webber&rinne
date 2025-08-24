@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weber Test Clinical Decision Matrix</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .quadrant-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            min-height: 700px;
+        }
+        
+        .quadrant {
+            padding: 25px;
+            border: 2px solid #e0e6ed;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .quadrant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .quadrant-1 {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            border-right: 2px solid #27ae60;
+        }
+        
+        .quadrant-2 {
+            background: linear-gradient(135deg, #fff3cd 0%, #fef9e7 100%);
+            border-left: 2px solid #f39c12;
+        }
+        
+        .quadrant-3 {
+            background: linear-gradient(135deg, #f8d7da 0%, #fdeaea 100%);
+            border-top: 2px solid #e74c3c;
+            border-right: 2px solid #e74c3c;
+        }
+        
+        .quadrant-4 {
+            background: linear-gradient(135deg, #d1ecf1 0%, #e8f6f8 100%);
+            border-top: 2px solid #3498db;
+            border-left: 2px solid #3498db;
+        }
+        
+        .test-result {
+            display: inline-block;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+        
+        .ear-affected {
+            background: #e74c3c;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .loss-type {
+            background: #3498db;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .condition {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .interpretation {
+            background: rgba(255,255,255,0.8);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid;
+            font-size: 0.9em;
+        }
+        
+        .quadrant-1 .interpretation { border-left-color: #27ae60; }
+        .quadrant-2 .interpretation { border-left-color: #f39c12; }
+        .quadrant-3 .interpretation { border-left-color: #e74c3c; }
+        .quadrant-4 .interpretation { border-left-color: #3498db; }
+        
+        .next-steps {
+            margin-top: 20px;
+        }
+        
+        .next-steps h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+        
+        .steps-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .steps-list li {
+            background: rgba(255,255,255,0.6);
+            margin: 6px 0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid;
+            font-size: 0.9em;
+        }
+        
+        .quadrant-1 .steps-list li { border-left-color: #27ae60; }
+        .quadrant-2 .steps-list li { border-left-color: #f39c12; }
+        .quadrant-3 .steps-list li { border-left-color: #e74c3c; }
+        .quadrant-4 .steps-list li { border-left-color: #3498db; }
+        
+        .severity-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .normal { background: #27ae60; }
+        .caution { background: #f39c12; }
+        .urgent { background: #e74c3c; }
+        .investigate { background: #3498db; }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .legend-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .legend-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .legend-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .legend-category {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .legend-category h4 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+            font-size: 1.1em;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 5px;
+        }
+        
+        .legend-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 0.9em;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .legend-term {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .legend-definition {
+            color: #666;
+            text-align: right;
+            max-width: 60%;
+        }
+        
+        .priority-legend {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .priority-item {
+            display: inline-block;
+            margin: 0 20px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        
+        .legend-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Weber Test Clinical Decision Matrix</h1>
+            <p>Comprehensive guide using RIGHT EAR examples for Weber test interpretation</p>
+        </div>
+        
+        <div class="quadrant-grid">
+            <!-- Quadrant 1: Normal -->
+            <div class="quadrant quadrant-1">
+                <div class="severity-indicator normal"></div>
+                <div class="test-result">Weber: Central (No Lateralization)</div>
+                <div class="ear-affected">No Defect</div>
+                <div class="loss-type">Normal</div>
+                <div class="condition">Normal Hearing</div>
+                <div class="interpretation">
+                    <strong>Interpretation:</strong> Sound heard equally in both ears. Both ears have similar hearing thresholds. No significant conductive or sensorineural pathology present.
+                </div>
+                <div class="next-steps">
+                    <h4>Next Steps:</h4>
+                    <ul class="steps-list">
+                        <li>Perform Rinne test to confirm (should be positive bilaterally)</li>
+                        <li>Document baseline hearing status</li>
+                        <li>Routine follow-up if asymptomatic</li>
+                        <li>Consider formal audiometry if patient reports subjective hearing concerns</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Quadrant 2: Conductive Loss -->
+            <div class="quadrant quadrant-2">
+                <div class="severity-indicator caution"></div>
+                <div class="test-result">Weber: Lateralizes TO Right Ear</div>
+                <div class="ear-affected">RIGHT EAR</div>
+                <div class="loss-type">CHL</div>
+                <div class="condition">RIGHT Conductive Hearing Loss</div>
+                <div class="interpretation">
+                    <strong>Interpretation:</strong> Sound lateralizes toward the RIGHT ear (affected ear). The right ear has conductive pathology - sound travels better through bone conduction because external noise is blocked by the conductive problem.
+                </div>
+                <div class="next-steps">
+                    <h4>Next Steps:</h4>
+                    <ul class="steps-list">
+                        <li>Rinne test RIGHT ear (expect NEGATIVE - bone > air)</li>
+                        <li>Otoscopic examination of RIGHT ear</li>
+                        <li>Look for: earwax, fluid, TM perforation, otitis media</li>
+                        <li>Consider tympanometry</li>
+                        <li>Audiometry if problem persists</li>
+                        <li>ENT referral if no obvious treatable cause</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Quadrant 3: Sensorineural Loss -->
+            <div class="quadrant quadrant-3">
+                <div class="severity-indicator urgent"></div>
+                <div class="test-result">Weber: Lateralizes AWAY TO Left Ear</div>
+                <div class="ear-affected">RIGHT EAR</div>
+                <div class="loss-type">SNHL</div>
+                <div class="condition">RIGHT Sensorineural Hearing Loss</div>
+                <div class="interpretation">
+                    <strong>Interpretation:</strong> Sound lateralizes AWAY from the RIGHT ear (toward the better LEFT ear). The RIGHT ear has inner ear, cochlear, or retrocochlear pathology affecting nerve transmission.
+                </div>
+                <div class="next-steps">
+                    <h4>Next Steps:</h4>
+                    <ul class="steps-list">
+                        <li>Rinne test RIGHT ear (expect POSITIVE - air > bone)</li>
+                        <li>**URGENT**: If sudden onset (<72 hours) → immediate oral steroids</li>
+                        <li>Formal audiometry</li>
+                        <li>MRI brain/IACs if unilateral or progressive</li>
+                        <li>Rule out acoustic neuroma/retrocochlear pathology</li>
+                        <li>ENT referral (urgent if sudden or progressive)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Quadrant 4: Mixed Loss -->
+            <div class="quadrant quadrant-4">
+                <div class="severity-indicator investigate"></div>
+                <div class="test-result">Weber: Variable + Complex Rinne Pattern</div>
+                <div class="ear-affected">RIGHT EAR</div>
+                <div class="loss-type">Mixed</div>
+                <div class="condition">RIGHT Mixed Hearing Loss</div>
+                <div class="interpretation">
+                    <strong>Interpretation:</strong> RIGHT ear has BOTH conductive AND sensorineural components. Weber lateralization depends on which component dominates. Rinne may be positive or negative depending on severity of conductive component.
+                </div>
+                <div class="next-steps">
+                    <h4>Next Steps:</h4>
+                    <ul class="steps-list">
+                        <li>Complete Rinne test battery (may be confusing results)</li>
+                        <li>Formal audiometry (ESSENTIAL for diagnosis)</li>
+                        <li>Comprehensive ENT evaluation</li>
+                        <li>Consider CT temporal bones for ossicular pathology</li>
+                        <li>May need surgical evaluation</li>
+                        <li>Usually treat conductive component first</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="legend-section">
+            <div class="legend-title">Medical Terminology Guide</div>
+            <div class="legend-grid">
+                <div class="legend-category">
+                    <h4>Hearing Loss Types</h4>
+                    <div class="legend-item">
+                        <span class="legend-term">CHL</span>
+                        <span class="legend-definition">Conductive Hearing Loss</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-term">SNHL</span>
+                        <span class="legend-definition">Sensorineural Hearing Loss</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-term">Mixed</span>
+                        <span class="legend-definition">Both CHL + SNHL present</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-term">TM</span>
+                        <span class="legend-definition">Tympanic Membrane (eardrum)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-term">Lateralization</span>
+                        <span class="legend-definition">Sound heard more in one ear</span>
+                    </div>
+                </div>
+                
+                <div class="legend-category">
+                    <h4>Clinical Tests & Terms</h4>
+                    <div class="legend-item">
+                        <span class="legend-term">Tympanometry</span>
+                        <span class="legend-definition">Test of eardrum mobility</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-term">Audiometry</span>
+                        <span class="legend-definition">Formal hearing test</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-term">IACs</span>
+                        <span class="legend-definition">Internal Auditory Canals</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-term">Retrocochlear</span>
+                        <span class="legend-definition">Behind the cochlea (nerve/brain)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-term">Acoustic Neuroma</span>
+                        <span class="legend-definition">Benign tumor on hearing nerve</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="priority-legend">
+                <div class="priority-item">
+                    <span class="legend-dot normal"></span>Routine Care
+                </div>
+                <div class="priority-item">
+                    <span class="legend-dot caution"></span>Needs Investigation
+                </div>
+                <div class="priority-item">
+                    <span class="legend-dot urgent"></span>Urgent Evaluation
+                </div>
+                <div class="priority-item">
+                    <span class="legend-dot investigate"></span>Complex Workup Required
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
